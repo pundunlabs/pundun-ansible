@@ -1,0 +1,17 @@
+---
+# file: pundun_configure.yml
+- name: "Copy configuration edit script (sedit.sh)."
+  copy:
+    src: roles/deploy/files/sedit.sh
+    dest: /usr/lib/pundun/bin/sedit.sh
+    owner: pundun
+    group: pundun
+    mode: "u+x,g+x,o-rwx"
+  become: true
+
+- name: "Edit configurations"
+  command: /usr/lib/pundun/bin/sedit.sh {{ item.param }} {{ item.value }} {{ item.file }}
+  args:
+    chdir: /etc/pundun
+  with_items: "{{ configuration_parameters }}"
+  become: true

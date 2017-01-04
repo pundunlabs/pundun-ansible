@@ -1,0 +1,13 @@
+# file: production (inventory)
+[bare_metal]
+# hostname1  ansible_port=22 ansible_host=192.168.1.1
+
+[virtual_machines]
+
+## docker containers start
+[docker_containers]
+stoic_bhabha  ansible_port=33216 ansible_host=0.0.0.0
+desperate_goodall  ansible_port=33210 ansible_host=0.0.0.0
+focused_bartik  ansible_port=33204 ansible_host=0.0.0.0
+berserk_hodgkin  ansible_port=33198 ansible_host=0.0.0.0
+## docker containers end

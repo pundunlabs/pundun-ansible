@@ -1,0 +1,10 @@
+---
+# file: roles/deploy/tasks/main.yml
+- include: ntp.yml
+- include: deps.yml
+- include: pundun_download.yml
+- include: pundun_install.yml
+- include: set_ulimit.yml
+- include: pundun_configure.yml
+- include: configure_ssl.yml
+- include: configure_ssh.yml

@@ -1,0 +1,15 @@
+---
+# file: set_ulimit.yml
+- pam_limits:
+    domain: pundun
+    limit_type: soft
+    limit_item: nofile
+    value: "{{ ulimit | mandatory }}"
+  become: true
+
+- pam_limits:
+    domain: pundun
+    limit_type: hard
+    limit_item: nofile
+    value: "{{ ulimit | mandatory }}"
+  become : true

@@ -1,0 +1,9 @@
+---
+# file: bare_metal.yml
+
+- hosts: bare_metal
+  remote_user: root
+  roles:
+    - deploy
+  vars:
+    ntpserver: 0.pool.ntp.org

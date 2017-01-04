@@ -1,0 +1,62 @@
+---
+#file: "roles/deploy/vars/main.yml
+ulimit: "131072"
+pundun:
+    version: 1.0.3
+    download_url_centos_6: "https://drive.google.com/a/pundunlabs.com/uc?id=0B8kwov9P6bxaM2lDVE8wd2NBWFE&export=download"
+    download_url_centos_7: "https://drive.google.com/a/pundunlabs.com/uc?id=0B8kwov9P6bxaMzFfSTZybFVVWDQ&export=download"
+    download_url_ubuntu_14_04: "https://drive.google.com/a/pundunlabs.com/uc?id=0B8kwov9P6bxacmRpS3VnbzlUMGM&export=download"
+    download_url_ubuntu_16_04: "https://drive.google.com/a/pundunlabs.com/uc?id=0B8kwov9P6bxaRFlla0ZXX3F0ZWc&export=download"
+
+ssh:
+  user_dir: "/etc/pundun/ssh"
+  system_dir: "/etc/pundun/ssh"
+  authorized_keys: https://github.com/erdemaksu.keys
+
+ssl:
+  keyfile: "key.pem"
+  certfile: "cert.pem"
+  country: SE
+  state:
+  locality: Stockholm
+  organization: PundunLabsAB
+  organizationalunit: Development
+  commonname: PundunLabs
+  email: support@pundunlabs.com
+
+
+gb_log_master: "cobra"
+configuration_parameters:
+  #PUNDUN (protocol buffers) Configuration
+  - {param: "ppb_server_options.ip", value: "any", file: "pundun.yaml"}
+  - {param: "ppb_server_options.port", value: "8887", file: "pundun.yaml"}
+  - {param: "ppb_server_options.backlog", value: "5", file: "pundun.yaml"}
+  - {param: "ppb_server_options.max", value: "20", file: "pundun.yaml"}
+  - {param: "ppb_server_options.acceptor_pool_size", value: "5", file: "pundun.yaml"}
+  - {param: "ppb_server_options.ssl", value: "true", file: "pundun.yaml"}
+  - {param: "ppb_server_options.ssl_opts.certfile", value: "\"{{ ssl.certfile }}\"", file: "pundun.yaml"}
+  - {param: "ppb_server_options.ssl_opts.keyfile", value: "\"{{ ssl.keyfile }}\"", file: "pundun.yaml"}
+  - {param: "ppb_server_options.ssl_opts.depth", value: "1", file: "pundun.yaml"}
+  #PUNDUN (command line interface) Configuration
+  - {param: "pundun_cli_options.ip", value: "any", file: "pundun.yaml"}
+  - {param: "pundun_cli_options.port", value: "8884", file: "pundun.yaml"}
+  - {param: "pundun_cli_options.system_dir", value: "\"{{ ssh.system_dir }}\"", file: "pundun.yaml"}
+  - {param: "pundun_cli_options.user_dir", value: "\"{{ ssh.user_dir }}\"", file: "pundun.yaml"}
+  #GB_LOG Configuration
+  - {param: "logname", value: "\"local.pundun.log\"", file: "gb_log.yaml"}
+  - {param: "maxsize", value: "60", file: "gb_log.yaml"}
+  - {param: "number_of_files", value: "20", file: "gb_log.yaml"}
+  - {param: "remote_host", value: "{{  gb_log_master }}", file: "gb_log.yaml"}
+  - {param: "remote_port", value: "32000", file: "gb_log.yaml"}
+  - {param: "type", value: "both", file: "gb_log.yaml"}
+  #GB_DYNO Configuration
+  - {param: "reachability_check_interval", value: "60000", file: "gb_dyno.yaml"}
+  - {param: "cluster", value: "\"my_cluster\"", file: "gb_dyno.yaml"}
+  - {param: "dc", value: "\"dc01\"", file: "gb_dyno.yaml"}
+  - {param: "rack", value: "\"rack01\"", file: "gb_dyno.yaml"}
+  - {param: "request_timeout", value: "5000", file: "gb_dyno.yaml"}
+  - {param: "write_consistency", value: "ANY", file: "gb_dyno.yaml"}
+  - {param: "read_consistency", value: "ONE", file: "gb_dyno.yaml"}
+  #ENTERDB Configuration
+  - {param: "num_of_local_shards", value: "32", file: "enterdb.yaml"}
+  - {param: "db_path", value: "\"/var/lib/pundun\"", file: "enterdb.yaml"}

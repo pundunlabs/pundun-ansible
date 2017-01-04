@@ -1,0 +1,8 @@
+---
+# file: configure_pundun.yml
+- name: "Generate SSL Certificates"
+  command: openssl req -x509 -newkey rsa:4096 -keyout {{ ssl.keyfile }} -out {{ ssl.certfile}} -days 1095 -nodes -subj "/C={{ ssl.country }}/ST={{ ssl.state }}/L={{ ssl.locality }}/O={{ ssl.organization }}/OU={{ ssl.organizationalunit }}/CN={{ ssl.commonname }}/emailAddress={{ ssl.email }}"
+  args:
+    chdir: /usr/lib/pundun/lib/pundun-{{ pundun.version }}/priv
+    creates: "{{ ssl.certfile }}"
+  become: true

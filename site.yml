@@ -1,0 +1,5 @@
+---
+# file: site.yml
+- include: bare_metal.yml
+- include: virtual_machines.yml
+- include: docker_containers.yml

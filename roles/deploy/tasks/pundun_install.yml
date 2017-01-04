@@ -1,0 +1,55 @@
+---
+# file: pundun_install.yml
+- name: Install pundun package on Ubuntu Systems
+  when: ansible_distribution == "Ubuntu"
+  shell: ls /var/cache/apt/archives/pundun*.deb | xargs dpkg -i
+  args:
+    creates: /usr/lib/pundun
+  become: true
+  tags: pundun
+
+- name: Install pundun package on Centos Systems
+  when: ansible_distribution == "CentOS"
+  shell: ls /home/admin/pundun*.rpm | xargs rpm -Uvh
+  args:
+    creates: /usr/lib/pundun
+  become: true
+  tags: pundun
+
+- name: "set pundun user password"
+  user:
+    name: pundun
+    password: "$6$jQwVWe1h/.ui96p$79AyazhjbPxUwd7I8BNAHBVP5O7VQMKTLaYEN5tjk2F48wUPgaGOqk6UDd2UeuF4XUHhr91/uxEjP9sncoHW.."
+  become: true
+
+- name: "Ensure /etc/pundun owned by pundun"
+  file: 
+    path: "/etc/pundun"
+    state: directory
+    owner: pundun
+    group: pundun
+    mode: 0755
+    recurse: yes
+  become: true
+
+- name: "Ensure set /usr/lib/pundun owned by pundun"
+  file:
+    path: "/usr/lib/pundun"
+    state: directory
+    owner: pundun
+    group: pundun
+    mode: 0755
+    recurse: true
+    follow: yes
+  become: true
+
+# Below task creates .hosts.erlang file as a work around.
+# It will not be needed after pundun start script is fixed.
+- name: "Workaround: touch /.hosts.erlang"
+  file:
+    path: "/.hosts.erlang"
+    state: touch
+    owner: pundun
+    group: pundun
+    mode: 0644
+  become: true

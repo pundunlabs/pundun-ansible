@@ -1,0 +1,23 @@
+---
+- name: "Generate SSH user key for Pundun CLI"
+  command: ssh-keygen -t rsa -f {{ ssh.user_dir }}/id_rsa -q -P ""
+  args:
+    chdir: /usr/lib/pundun/lib/pundun-{{ pundun.version }}/priv
+    creates: "{{ ssh.user_dir }}/id_rsa"
+  become: true
+
+- name: "Generate SSH host key for Pundun CLI"
+  command: ssh-keygen -t rsa -f {{ ssh.system_dir }}/ssh_host_rsa_key  -q -P ""
+  args:
+    chdir: /usr/lib/pundun/lib/pundun-{{ pundun.version }}/priv
+    creates: "{{ ssh.system_dir }}/ssh_host_rsa_key"
+  become: true
+
+- name: "Generate authorized_keys"
+  authorized_key:
+    user: pundun
+    state: present
+    key: "{{ ssh.authorized_keys }}"
+    path: "{{ ssh.user_dir }}/authorized_keys"
+    manage_dir: no
+  become: true

@@ -1,0 +1,19 @@
+---
+# file: roles/deploy/tasks/main.yml
+- name: be sure openssl is installed on Centos
+  when:
+    - ansible_distribution == "CentOS"
+  yum:
+    name: openssl
+    state: installed
+  become: true
+  tags: ntp
+
+- name: be sure openssl is installed on Ubuntu
+  when:
+    - ansible_distribution == "Ubuntu"
+  apt:
+    name: openssl
+    state: present
+  become: true
+  tags: ntp

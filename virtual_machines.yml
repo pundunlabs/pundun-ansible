@@ -1,0 +1,9 @@
+---
+# file: virtual_machines.yml
+
+- hosts: virtual_machines
+  remote_user: root
+  roles:
+    - deploy
+  vars:
+    ntpserver: 0.pool.ntp.org

@@ -1,0 +1,9 @@
+---
+# file: docker_containers.yml
+
+- hosts: docker_containers
+  remote_user: admin
+  roles:
+    - deploy
+  vars:
+    ntpserver: 0.pool.ntp.org
