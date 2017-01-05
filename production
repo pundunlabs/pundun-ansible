@@ -6,8 +6,8 @@
 
 ## docker containers start
 [docker_containers]
-stoic_bhabha  ansible_port=33216 ansible_host=0.0.0.0
-desperate_goodall  ansible_port=33210 ansible_host=0.0.0.0
-focused_bartik  ansible_port=33204 ansible_host=0.0.0.0
-berserk_hodgkin  ansible_port=33198 ansible_host=0.0.0.0
+berserk_carson  ansible_port=33695 ansible_host=0.0.0.0
+serene_northcutt  ansible_port=33689 ansible_host=0.0.0.0
+tender_bell  ansible_port=33683 ansible_host=0.0.0.0
+evil_leakey  ansible_port=33676 ansible_host=0.0.0.0
 ## docker containers end

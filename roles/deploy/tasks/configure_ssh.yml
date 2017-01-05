@@ -1,4 +1,22 @@
 ---
+- name: "Ensure ssh user_dir exists"
+  file: 
+    path: "{{ ssh.user_dir }}"
+    state: directory
+    owner: pundun
+    group: pundun
+    mode: 0755
+  become: true
+
+- name: "Ensure ssh system_dir exists"
+  file: 
+    path: "{{ ssh.system_dir }}"
+    state: directory
+    owner: pundun
+    group: pundun
+    mode: 0755
+  become: true
+
 - name: "Generate SSH user key for Pundun CLI"
   command: ssh-keygen -t rsa -f {{ ssh.user_dir }}/id_rsa -q -P ""
   args:
