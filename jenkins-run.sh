@@ -26,4 +26,4 @@ ids[4]=$(docker run -d -P  pundunlabs/pundun-$tag:ubuntu-14.04)
 ./docker_play.sh
 _publish $tag
 #Cleanup dangling images
-dcleanup
+dcleanup || exit 0

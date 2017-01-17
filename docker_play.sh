@@ -22,4 +22,4 @@ do
 done < <(docker ps --format "{{.ID}} {{.Names}}" 2>/dev/null)
 echo $end_anchor >> $ansible_hosts_file
 export ANSIBLE_HOST_KEY_CHECKING=False
-ansible-playbook -i production docker_containers.yml -K
+ansible-playbook -i production docker_containers.yml

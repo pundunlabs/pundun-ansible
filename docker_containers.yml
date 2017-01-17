@@ -2,7 +2,8 @@
 # file: docker_containers.yml
 
 - hosts: docker_containers
-  remote_user: admin
+  remote_user: root
+  ansible_become_pass: root
   roles:
     - deploy
   vars:
