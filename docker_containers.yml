@@ -3,7 +3,6 @@
 
 - hosts: docker_containers
   remote_user: root
-  ansible_become_pass: root
   roles:
     - deploy
   vars:

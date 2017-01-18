@@ -10,7 +10,7 @@
 
 - name: Install pundun package on Centos Systems
   when: ansible_distribution == "CentOS"
-  shell: ls /home/admin/pundun*.rpm | xargs rpm -Uvh
+  shell: ls /tmp/pundun*.rpm | xargs rpm -Uvh
   args:
     creates: /usr/lib/pundun
   become: true
