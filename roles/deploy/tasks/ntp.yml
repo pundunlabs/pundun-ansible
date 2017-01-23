@@ -1,17 +1,15 @@
 ---
 # file: roles/deploy/tasks/main.yml
-- name: be sure ntp is installed on Centos
-  when:
-    - ansible_distribution == "CentOS"
+- name: be sure ntp is installed on RedHat Family Systems
+  when: ansible_os_family == "RedHat"
   yum:
     name: ntp
     state: installed
   become: true
   tags: ntp
 
-- name: be sure ntp is installed on Ubuntu
-  when:
-    - ansible_distribution == "Ubuntu"
+- name: be sure ntp is installed on Debian Family Systems
+  when: ansible_os_family == "Debian"
   apt:
     name: ntp
     state: present
@@ -32,6 +30,5 @@
     name: ntpd
     state: started
     enabled: yes
-    use: ansible_service_mgr
   become: true
   tags: ntp

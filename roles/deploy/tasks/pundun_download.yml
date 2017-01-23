@@ -20,16 +20,16 @@
   become: true
   tags: pundun
 
-- name: Download pundun package on Centos 7 Systems
-  when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
+- name: Download pundun package on Redhat Family Major Version 7 Systems
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
   get_url:
     url: "{{ pundun.download_url_centos_7 }}"
     dest: "/tmp/"
   become: true
   tags: pundun
 
-- name: Download pundun package on Centos 6 Systems
-  when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6"
+- name: Download pundun package on Redhat Family Major Version 6 Systems
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "6"
   get_url:
     url: "{{ pundun.download_url_centos_6 }}"
     dest: "/tmp/"

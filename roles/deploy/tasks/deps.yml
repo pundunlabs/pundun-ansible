@@ -1,17 +1,15 @@
 ---
 # file: roles/deploy/tasks/main.yml
-- name: be sure openssl is installed on Centos
-  when:
-    - ansible_distribution == "CentOS"
+- name: be sure openssl is installed on RedHat Family Systems
+  when: ansible_os_family == "RedHat"
   yum:
     name: openssl
     state: installed
   become: true
   tags: ntp
 
-- name: be sure openssl is installed on Ubuntu
-  when:
-    - ansible_distribution == "Ubuntu"
+- name: be sure openssl is installed on Debian Family Systems
+  when: ansible_os_family == "Debian"
   apt:
     name: openssl
     state: present

@@ -1,15 +1,15 @@
 ---
 # file: pundun_install.yml
-- name: Install pundun package on Ubuntu Systems
-  when: ansible_distribution == "Ubuntu"
+- name: Install pundun package on Debian Family Systems
+  when: ansible_os_family == "Debian"
   shell: ls /var/cache/apt/archives/pundun*.deb | xargs dpkg -i
   args:
     creates: /usr/lib/pundun
   become: true
   tags: pundun
 
-- name: Install pundun package on Centos Systems
-  when: ansible_distribution == "CentOS"
+- name: Install pundun package on RedHat Family Systems
+  when: ansible_os_family == "RedHat"
   shell: ls /tmp/pundun*.rpm | xargs rpm -Uvh
   args:
     creates: /usr/lib/pundun
@@ -46,6 +46,7 @@
 # Below task creates .hosts.erlang file as a work around.
 # It will not be needed after pundun start script is fixed.
 - name: "Workaround: touch /.hosts.erlang"
+  when: pundun.version == "1.0.3"
   file:
     path: "/.hosts.erlang"
     state: touch

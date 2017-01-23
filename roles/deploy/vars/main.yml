@@ -2,11 +2,11 @@
 #file: "roles/deploy/vars/main.yml
 ulimit: "131072"
 pundun:
-    version: 1.0.3
-    download_url_centos_6: "https://drive.google.com/a/pundunlabs.com/uc?id=0B8kwov9P6bxaM2lDVE8wd2NBWFE&export=download"
-    download_url_centos_7: "https://drive.google.com/a/pundunlabs.com/uc?id=0B8kwov9P6bxaMzFfSTZybFVVWDQ&export=download"
-    download_url_ubuntu_14_04: "https://drive.google.com/a/pundunlabs.com/uc?id=0B8kwov9P6bxacmRpS3VnbzlUMGM&export=download"
-    download_url_ubuntu_16_04: "https://drive.google.com/a/pundunlabs.com/uc?id=0B8kwov9P6bxaRFlla0ZXX3F0ZWc&export=download"
+    version: 1.0.4
+    download_url_centos_6: "https://drive.google.com/a/pundunlabs.com/uc?id=0B8kwov9P6bxaRTRlZXh3RzRiYTg&export=download"
+    download_url_centos_7: "https://drive.google.com/a/pundunlabs.com/uc?id=0B8kwov9P6bxaRTRlZXh3RzRiYTg&export=download"
+    download_url_ubuntu_14_04: "https://drive.google.com/a/pundunlabs.com/uc?id=0B8kwov9P6bxac0lCOE9DdlJTbjA&export=download"
+    download_url_ubuntu_16_04: "https://drive.google.com/a/pundunlabs.com/uc?id=0B8kwov9P6bxaZG5uQTR2M19VU1k&export=download"
 
 ssh:
   user_dir: "/etc/pundun/ssh"
