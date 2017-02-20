@@ -1,11 +1,14 @@
 ---
 # file: pundun_download.yml
+- include_vars:
+    file: "download_v{{ pundun.version }}.yml"
+
 - name: Download pundun package on Ubuntu 16.04 Systems
   when:
     - ansible_distribution == "Ubuntu"
     - ansible_distribution_version == "16.04"
   get_url:
-    url: "{{ pundun.download_url_ubuntu_16_04 }}"
+    url: "{{ download_url_ubuntu_16_04 }}"
     dest: "/var/cache/apt/archives/" 
   become: true
   tags: pundun
@@ -15,7 +18,7 @@
     - ansible_distribution == "Ubuntu"
     - ansible_distribution_version == "14.04"
   get_url:
-    url: "{{ pundun.download_url_ubuntu_14_04 }}"
+    url: "{{ download_url_ubuntu_14_04 }}"
     dest: "/var/cache/apt/archives/" 
   become: true
   tags: pundun
@@ -23,7 +26,7 @@
 - name: Download pundun package on Redhat Family Major Version 7 Systems
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
   get_url:
-    url: "{{ pundun.download_url_centos_7 }}"
+    url: "{{ download_url_centos_7 }}"
     dest: "/tmp/"
   become: true
   tags: pundun
@@ -31,7 +34,7 @@
 - name: Download pundun package on Redhat Family Major Version 6 Systems
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "6"
   get_url:
-    url: "{{ pundun.download_url_centos_6 }}"
+    url: "{{ download_url_centos_6 }}"
     dest: "/tmp/"
   become: true
   tags: pundun

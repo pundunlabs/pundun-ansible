@@ -43,6 +43,29 @@
     follow: yes
   become: true
 
+- name: "Ensure set /usr/lib64/pundun owned by pundun"
+  when: ansible_os_family == "RedHat"
+  file:
+    path: "/usr/lib64/pundun"
+    state: directory
+    owner: pundun
+    group: pundun
+    mode: 0755
+    recurse: true
+    follow: yes
+  become: true
+
+- name: "Ensure set /var/lib/pundun owned by pundun"
+  file:
+    path: "/var/lib/pundun"
+    state: directory
+    owner: pundun
+    group: pundun
+    mode: 0755
+    recurse: true
+    follow: yes
+  become: true
+
 # Below task creates .hosts.erlang file as a work around.
 # It will not be needed after pundun start script is fixed.
 - name: "Workaround: touch /.hosts.erlang"

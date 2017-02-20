@@ -1,0 +1,6 @@
+---
+#file: download_v1.0.6.yml
+download_url_ubuntu_16_04: "https://drive.google.com/a/pundunlabs.com/uc?id=0B8kwov9P6bxaYnNrTVZGa1pKRGM&export=download"
+download_url_ubuntu_14_04: "https://drive.google.com/a/pundunlabs.com/uc?id=0B8kwov9P6bxaVVJ0eDNmeHQ4R0E&export=download"
+download_url_centos_7: "https://drive.google.com/a/pundunlabs.com/uc?id=0B8kwov9P6bxaR2xuVUNwVWZvbFE&export=download"
+download_url_centos_6: "https://drive.google.com/a/pundunlabs.com/uc?id=0B8kwov9P6bxaUzE5WjFjTWJna00&export=download"
